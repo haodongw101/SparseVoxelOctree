@@ -85,4 +85,13 @@ add_executable(SparseVoxelOctree
 find_package(Threads REQUIRED)
 target_link_libraries(SparseVoxelOctree PRIVATE dep shader Threads::Threads)
 
-install(TARGETS SparseVoxelOctree RUNTIME DESTINATION)
+# Headless octree compressor tool
+add_executable(octree_compressor
+		src/octree_compressor.cpp
+		src/Counter.cpp
+		src/Counter.hpp
+		src/Config.hpp
+		)
+target_link_libraries(octree_compressor PRIVATE dep shader Threads::Threads)
+
+install(TARGETS SparseVoxelOctree octree_compressor RUNTIME DESTINATION)
